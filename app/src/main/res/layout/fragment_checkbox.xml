@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="talex.zsw.sample.module.main.checkbox.CheckBoxViewModel"/>
+	</data>
+
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:binding="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/window_background"
+		android:orientation="vertical">
+
+		<android.support.v4.widget.NestedScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fillViewport="true">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:padding="@dimen/activity_margin">
+
+				<TextView
+					style="@style/Text_Black_Title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:text="@{viewModel.info}"/>
+
+				<CheckBox
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:checked="@={viewModel.check}"
+					android:text="CheckBox"
+					android:textColor="@color/text_black"
+					binding:onCheckedChangedCommand="@{viewModel.onCheckedChangedCommand}"/>
+
+				<TextView
+					style="@style/Text_Black_Title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:text="Switch 同步CheckBox"/>
+
+				<Switch
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/activity_margin"
+					binding:switchState="@{viewModel.check}"
+					binding:onCheckedChangedCommand="@{viewModel.onCheckedChangedCommand}"
+					android:text="Switch"
+					android:textColor="@color/text_black"/>
+
+				<TextView
+					style="@style/Text_Black_Title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:text="我只看看不能动"/>
+
+				<Switch
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/activity_margin"
+					binding:switchState="@{viewModel.check}"
+					android:text="Switch"
+					android:clickable="false"
+					android:textColor="@color/text_black"/>
+
+			</LinearLayout>
+
+		</android.support.v4.widget.NestedScrollView>
+
+	</LinearLayout>
+</layout>

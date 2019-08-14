@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="talex.zsw.sample.module.main.edittext.EditTextViewModel"/>
+	</data>
+
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:binding="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:background="@color/window_background"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<android.support.v4.widget.NestedScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fillViewport="true">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:padding="@dimen/activity_margin">
+
+				<TextView
+					style="@style/Text_Black_Title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="焦点变化监听"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:background="@drawable/bg_white_cs"
+					android:gravity="center"
+					android:orientation="horizontal"
+					android:padding="16sp">
+
+					<ImageView
+						android:layout_width="22dp"
+						android:layout_height="22dp"
+						android:src="@mipmap/user_icon" />
+
+					<include layout="@layout/include_hline"/>
+
+					<EditText
+						android:layout_width="0dp"
+						android:layout_height="match_parent"
+						android:layout_weight="1"
+						android:background="@null"
+						android:hint="请输入用户名"
+						android:text="@={viewModel.userName}"
+						android:textColor="@color/text_black"
+						android:textColorHint="@color/text_black3"
+						android:textSize="16sp"
+						binding:onFocusChangeCommand="@{viewModel.onFocusChangeCommand}" />
+
+					<ImageView
+						android:layout_width="22dp"
+						android:layout_height="22dp"
+						android:padding="3dp"
+						android:src="@mipmap/clean_edit"
+						binding:isVisible="@{viewModel.clearBtnVisib}"
+						binding:onClickCommand="@{viewModel.clearUserNameOnClickCommand}"/>
+				</LinearLayout>
+
+				<TextView
+					style="@style/Text_Black_Title"
+					android:layout_width="match_parent"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:layout_height="wrap_content"
+					android:text="@{viewModel.info}"/>
+
+				<EditText
+					android:layout_width="match_parent"
+					android:textColor="@color/text_black"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:text="@={viewModel.info}"
+					android:layout_height="wrap_content"/>
+
+				<TextView
+					style="@style/Text_Black_Title"
+					android:layout_width="match_parent"
+					android:layout_marginTop="@dimen/activity_margin"
+					android:layout_height="wrap_content"
+					android:text="@{viewModel.text}"/>
+
+				<EditText
+					android:layout_width="match_parent"
+					android:textColor="@color/text_black"
+					android:layout_marginTop="@dimen/activity_margin"
+					binding:textChanged="@{viewModel.textChangedCommand}"
+					android:layout_height="wrap_content"/>
+
+			</LinearLayout>
+
+		</android.support.v4.widget.NestedScrollView>
+
+	</LinearLayout>
+</layout>

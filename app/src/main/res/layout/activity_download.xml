@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="talex.zsw.sample.module.network.DownloadViewModel"/>
+	</data>
+
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:binding="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/window_background"
+		android:orientation="vertical">
+
+		<ProgressBar
+			android:id="@+id/mProgressBar"
+			style="?android:attr/progressBarStyleHorizontal"
+			android:layout_width="match_parent"
+			android:layout_height="10dp"
+			android:max="100"
+			android:progress="@{viewModel.pro}"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/activity_margin"
+			android:text="@{viewModel.info}"/>
+
+		<TextView
+			style="@style/BTN"
+			android:text="下载"
+			binding:isVisible="@{!viewModel.installVisib}"
+			binding:onClickCommand="@{viewModel.downloadClick}"/>
+
+		<TextView
+			style="@style/BTN"
+			android:text="安装"
+			binding:isVisible="@{viewModel.installVisib}"
+			binding:onClickCommand="@{viewModel.installClick}"/>
+
+	</LinearLayout>
+</layout>

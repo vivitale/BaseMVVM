@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="talex.zsw.sample.module.main.viewgroup.ViewLinearViewModel"/>
+
+		<import type="talex.zsw.sample.R" />
+	</data>
+
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:binding="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/window_background"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:padding="@dimen/activity_margin"
+			style="@style/Text_Black_Title"
+			android:text="@{viewModel.entity.title}"
+			android:layout_height="wrap_content"/>
+
+		<ImageView
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			binding:url="@{viewModel.entity.image}"
+			binding:placeholderRes="@{R.mipmap.ic_launcher_round}"/>
+
+	</LinearLayout>
+</layout>

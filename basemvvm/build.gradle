@@ -1,0 +1,115 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+group='com.github.vivitale'
+
+android {
+	compileSdkVersion 28
+	buildToolsVersion '28.0.3'
+	defaultConfig {
+		minSdkVersion 16
+		targetSdkVersion 28
+		versionCode 1
+		versionName "0.0.1"
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		multiDexEnabled true
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+
+		debug {
+			//            applicationIdSuffix ".debug"
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+
+		unsigned {
+			//			versionNameSuffix '-unsigned'
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+
+	dataBinding {
+		enabled true
+	}
+
+	lintOptions {
+		checkReleaseBuilds false
+		abortOnError false
+	}
+}
+
+dependencies {
+	api fileTree(dir: 'libs', include: ['*.jar'])
+	api 'com.github.vivitale:BaseCore:0.0.57'
+	//Google AAC
+	api 'android.arch.lifecycle:extensions:1.1.1'
+	api 'android.arch.lifecycle:compiler:1.1.1'
+	annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
+	// 网络请求
+	compileOnly 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
+	compileOnly 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
+	compileOnly 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
+	compileOnly 'com.squareup.okhttp3:okhttp:3.8.1'
+	compileOnly 'com.squareup.okio:okio:1.13.0'
+
+	// 图片工具glide
+	compileOnly 'com.github.bumptech.glide:glide:4.7.1'
+	annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+	compileOnly 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
+	// RecyclerView适配器工具
+	compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+
+	compileOnly 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
+	compileOnly 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
+	// 轮播图
+	compileOnly 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+	// 二维码,一维码工具
+	compileOnly 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
+	compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
+	// 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
+	compileOnly 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+	// 日历控件
+	// compileOnly 'com.squareup:android-times-square:1.6.5@aar'
+}
+
+allprojects {
+	gradle.projectsEvaluated {
+		tasks.withType(JavaCompile) {
+			options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xdiags:verbose"
+		}
+	}
+}
+
+// ---------------------- JitPack ----------------------
+// 打包源码
+task sourcesJar(type: Jar) {
+	from android.sourceSets.main.java.srcDirs
+	classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+	failOnError  false
+	source = android.sourceSets.main.java.sourceFiles
+	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+	classpath += configurations.compile
+}
+
+// 制作文档(Javadoc)
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
+}

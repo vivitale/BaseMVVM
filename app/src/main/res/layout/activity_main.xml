@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="talex.zsw.sample.module.main.MainViewModel"/>
+	</data>
+
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:binding="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/window_background"
+		android:orientation="vertical">
+
+		<android.support.v4.widget.NestedScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fillViewport="true">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:padding="@dimen/activity_margin">
+
+				<TextView
+					style="@style/BTN"
+					android:text="TextView"
+					binding:onClickCommand="@{viewModel.textViewClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="ImageView"
+					binding:onClickCommand="@{viewModel.imageViewClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="EditText"
+					binding:onClickCommand="@{viewModel.editTextClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="CheckBox &amp; Switch"
+					binding:onClickCommand="@{viewModel.checkboxClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="RadioGroup"
+					binding:onClickCommand="@{viewModel.radioClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="Spinner"
+					binding:onClickCommand="@{viewModel.spinnerClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="ViewGroup"
+					binding:onClickCommand="@{viewModel.viewgroupClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="Bottom Navigation"
+					binding:onClickCommand="@{viewModel.bottomBarClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="ViewPager + View"
+					binding:onClickCommand="@{viewModel.viewpagerViewClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="ViewPager + Fragment"
+					binding:onClickCommand="@{viewModel.viewpagerFragmentClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="RecyclerView + bindingcollectionadapter2"
+					binding:onClickCommand="@{viewModel.recyclerBindingClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="RecyclerView + bindingcollectionadapter2 + multi"
+					binding:onClickCommand="@{viewModel.recyclerBindingMultiClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="RecyclerView + BaseRecyclerViewAdapterHelper"
+					binding:onClickCommand="@{viewModel.recyclerHelperClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="Network + OKGO"
+					binding:onClickCommand="@{viewModel.networkClick}"/>
+
+				<TextView
+					style="@style/BTN"
+					android:text="Download + OKGO"
+					binding:onClickCommand="@{viewModel.downloadClick}"/>
+
+			</LinearLayout>
+
+		</android.support.v4.widget.NestedScrollView>
+
+	</LinearLayout>
+</layout>
