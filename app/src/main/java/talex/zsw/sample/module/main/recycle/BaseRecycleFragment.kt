@@ -43,8 +43,7 @@ class BaseRecycleFragment : BaseFragment<FragmentBaseRecyclerBinding, BaseRecycl
     {
         viewModel.onRefreshCommand.execute()
         with(swipe_target) {
-            addItemDecoration(DividerItemDecoration(DividerItemDecoration.VERTICAL_LIST,
-                                                    resources.getColor(R.color.line)))
+            addItemDecoration(DividerItemDecoration(DividerItemDecoration.VERTICAL_LIST,R.color.line,true))
             layoutManager = LinearLayoutManager(activity)
             adapter = viewModel.adapter
         }
